@@ -1,6 +1,7 @@
 package obligatorio2023.tad.lista;
 
-import um.prog2.tad.exceptions.IllegalIndexException;
+
+import obligatorio2023.tad.exceptions.IllegalIndexException;
 
 public class ListaEnlazada implements Lista
 {

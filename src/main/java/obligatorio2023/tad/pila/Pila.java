@@ -1,7 +1,6 @@
 package obligatorio2023.tad.pila;
 
 import obligatorio2023.tad.exceptions.EmptyStackException;
-import um.prog2.tad.exceptions.EmptyStackException;
 
 public interface Pila <T>{
     public void push(T dato);
