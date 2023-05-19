@@ -29,6 +29,10 @@ public class MyLinkedListImp<T> implements MyLinkedList<T>, MyStack<T>, MyQueue<
     @Override
     public void agregar(T obj)
     { Node<T> nuevo= new Node<>(obj);
+        if (this.primero==null){
+            this.primero=nuevo;
+            this.ultimo=nuevo;
+        }
         nuevo.setSiguiente(this.primero);
         this.primero=nuevo;
 
