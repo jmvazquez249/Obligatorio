@@ -1,6 +1,7 @@
 package obligatorio2023.TADs.MyLinkedList;
 
 
+import obligatorio2023.Exception.EmptyQueueException;
 import obligatorio2023.Exception.EmptyStackException;
 import obligatorio2023.Exception.IllegalIndexException;
 import obligatorio2023.TADs.MyQueue.MyQueue;
@@ -183,4 +184,20 @@ public class MyLinkedListImp<T> implements MyList<T>, MyStack<T>, MyQueue<T>
     public void clear() {
         vaciar();
     }
+
+    @Override
+    public void enqueue(T value) {
+        agregar(value);
+
+    }
+
+    @Override
+    public T dequeue() throws EmptyQueueException {
+        if (!esVacia()){
+        return quitar(this.largo()-1);}
+        else{
+            throw new EmptyQueueException();
+        }
+    }
+
 }

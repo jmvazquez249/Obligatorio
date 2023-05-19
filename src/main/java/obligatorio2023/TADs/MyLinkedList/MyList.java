@@ -52,4 +52,5 @@ public interface MyList<T>
      * <#indice>: <to string del objeto>
      * */
     public void imprimirDatos();
+
 }
