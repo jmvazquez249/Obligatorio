@@ -10,6 +10,7 @@ public class MyLinkedListImp<T> implements MyLinkedList<T>, MyStack<T>, MyQueue<
 {
 
     private Node<T> primero;
+    private Node <T> ultimo;
 
     public Node<T> getPrimero()
     {
@@ -30,23 +31,16 @@ public class MyLinkedListImp<T> implements MyLinkedList<T>, MyStack<T>, MyQueue<
     { Node<T> nuevo= new Node<>(obj);
         nuevo.setSiguiente(this.primero);
         this.primero=nuevo;
+
     }
 
     @Override
     public void agregarAlFinal(T obj)
-    {
-        Node<T> nuevo= new Node<>(obj);
-        if (this.primero==null){
-            this.primero=nuevo;
+    {       Node<T> nuevo= new Node<T>(obj);
+            this.ultimo.setSiguiente(nuevo);
+            this.ultimo=nuevo;
         }
-        else{
-            Node<T> aux=this.primero;
-            while(aux.getSiguiente()!=null){
-                aux=aux.getSiguiente();
-            }
-            aux.setSiguiente(nuevo);
-        }
-    }
+
 
     @Override
     public void agregar(T obj, int index) throws IllegalIndexException
@@ -96,17 +90,23 @@ public class MyLinkedListImp<T> implements MyLinkedList<T>, MyStack<T>, MyQueue<
         if (!esVacia() && 0<= index && index<largo()) {
             Node<T> aux = this.primero;
             if (index==0){
-                Node<T> aux2= primero;
-                this.primero=primero.getSiguiente();
+                Node<T> aux2= this.primero;
+                this.primero=this.primero.getSiguiente();
                 return aux2.getDato();
             }
+
             int contador = 0;
             while (contador < index-1) {
                 aux = aux.getSiguiente();
                 contador++;
+
+            }
+            if (index==largo()-1){
+                this.ultimo=aux;
             }
             Node<T> aux2 = aux.getSiguiente();
             aux.setSiguiente(aux2.getSiguiente());
+
             return aux2.getDato();
         } else {
             return null;
@@ -115,6 +115,12 @@ public class MyLinkedListImp<T> implements MyLinkedList<T>, MyStack<T>, MyQueue<
 
     @Override
     public T elemento(int index)  { if(-1<index && index<largo()){
+        if (index==largo()-1){
+            return this.ultimo.getDato();
+        }
+        if (index==0){
+            return this.primero.getDato();
+        }
         int recorre=0;
         Node<T> aux=this.primero;
         while (recorre<index){
