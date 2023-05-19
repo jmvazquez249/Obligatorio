@@ -13,6 +13,11 @@ public class MyLinkedListImp<T> implements MyList<T>, MyStack<T>, MyQueue<T>
     private Node<T> primero;
     private Node <T> ultimo;
 
+    public MyLinkedListImp() {
+        this.primero = null;
+        this.ultimo = null;
+    }
+
     public Node<T> getPrimero()
     {
         return this.primero;
