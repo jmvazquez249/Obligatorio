@@ -1,11 +1,11 @@
-package obligatorio2023.tad.conjunto;
+package obligatorio2023.TADs.conjunto;
 
 
-import obligatorio2023.tad.exceptions.IllegalIndexException;
-import obligatorio2023.tad.listagenericos.ListaEnlazadaGenerics;
-import obligatorio2023.tad.listagenericos.NodoGeneric;
+import obligatorio2023.TADs.Exception.IllegalIndexException;
+import obligatorio2023.TADs.MyLinkedList.MyLinkedListImp;
+import obligatorio2023.TADs.MyLinkedList.Node;
 
-public class Conjunto<T>  extends ListaEnlazadaGenerics<T> implements Conjunt<T>
+public class Conjunto<T>  extends MyLinkedListImp<T> implements Conjunt<T>
     {
         @Override
         public Conjunto<T> union(Conjunto<T> otroConjunto) {
@@ -22,7 +22,7 @@ public class Conjunto<T>  extends ListaEnlazadaGenerics<T> implements Conjunt<T>
         }
 
         @Override
-        public NodoGeneric<T> getPrimero() {
+        public Node<T> getPrimero() {
             return super.getPrimero();
         }
 

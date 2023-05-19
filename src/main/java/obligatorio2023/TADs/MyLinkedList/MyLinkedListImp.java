@@ -1,14 +1,17 @@
-package obligatorio2023.tad.listagenericos;
+package obligatorio2023.TADs.MyLinkedList;
 
 
-import obligatorio2023.tad.exceptions.IllegalIndexException;
+import obligatorio2023.TADs.Exception.EmptyStackException;
+import obligatorio2023.TADs.Exception.IllegalIndexException;
+import obligatorio2023.TADs.MyQueue.MyQueue;
+import obligatorio2023.TADs.MyStack.MyStack;
 
-public class ListaEnlazadaGenerics<T> implements ListaGenerics<T>
+public class MyLinkedListImp<T> implements MyLinkedList<T>, MyStack<T>, MyQueue<T>
 {
 
-    private NodoGeneric<T> primero;
+    private Node<T> primero;
 
-    public NodoGeneric<T> getPrimero()
+    public Node<T> getPrimero()
     {
         return this.primero;
     }
@@ -24,7 +27,7 @@ public class ListaEnlazadaGenerics<T> implements ListaGenerics<T>
 
     @Override
     public void agregar(T obj)
-    { NodoGeneric<T> nuevo= new NodoGeneric<>(obj);
+    { Node<T> nuevo= new Node<>(obj);
         nuevo.setSiguiente(this.primero);
         this.primero=nuevo;
     }
@@ -32,12 +35,12 @@ public class ListaEnlazadaGenerics<T> implements ListaGenerics<T>
     @Override
     public void agregarAlFinal(T obj)
     {
-        NodoGeneric<T> nuevo= new NodoGeneric<>(obj);
+        Node<T> nuevo= new Node<>(obj);
         if (this.primero==null){
             this.primero=nuevo;
         }
         else{
-            NodoGeneric<T> aux=this.primero;
+            Node<T> aux=this.primero;
             while(aux.getSiguiente()!=null){
                 aux=aux.getSiguiente();
             }
@@ -52,7 +55,7 @@ public class ListaEnlazadaGenerics<T> implements ListaGenerics<T>
             throw  new IllegalIndexException("El indice es incorrecto");
         }
         else{
-            NodoGeneric<T> nuevo = new NodoGeneric<>(obj);
+            Node<T> nuevo = new Node<>(obj);
             if (index == 0) {
                 agregar(obj);
             } else {
@@ -60,7 +63,7 @@ public class ListaEnlazadaGenerics<T> implements ListaGenerics<T>
                     agregarAlFinal(obj);
                 } else {
                     int recorre = 0;
-                    NodoGeneric<T> aux = this.primero;
+                    Node<T> aux = this.primero;
                     while (recorre < index - 1) {
                         recorre++;
                         aux = aux.getSiguiente();
@@ -79,7 +82,7 @@ public class ListaEnlazadaGenerics<T> implements ListaGenerics<T>
             return 0;
         }
         else{
-            NodoGeneric<T> aux=this.primero;
+            Node<T> aux=this.primero;
             while(aux.getSiguiente()!=null){
                 contador++;
                 aux=aux.getSiguiente();
@@ -91,9 +94,9 @@ public class ListaEnlazadaGenerics<T> implements ListaGenerics<T>
     @Override
     public T quitar(int index){
         if (!esVacia() && 0<= index && index<largo()) {
-            NodoGeneric<T> aux = this.primero;
+            Node<T> aux = this.primero;
             if (index==0){
-                NodoGeneric<T> aux2= primero;
+                Node<T> aux2= primero;
                 this.primero=primero.getSiguiente();
                 return aux2.getDato();
             }
@@ -102,7 +105,7 @@ public class ListaEnlazadaGenerics<T> implements ListaGenerics<T>
                 aux = aux.getSiguiente();
                 contador++;
             }
-            NodoGeneric<T> aux2 = aux.getSiguiente();
+            Node<T> aux2 = aux.getSiguiente();
             aux.setSiguiente(aux2.getSiguiente());
             return aux2.getDato();
         } else {
@@ -113,7 +116,7 @@ public class ListaEnlazadaGenerics<T> implements ListaGenerics<T>
     @Override
     public T elemento(int index)  { if(-1<index && index<largo()){
         int recorre=0;
-        NodoGeneric<T> aux=this.primero;
+        Node<T> aux=this.primero;
         while (recorre<index){
             aux=aux.getSiguiente();
             recorre++;}
@@ -133,7 +136,7 @@ public class ListaEnlazadaGenerics<T> implements ListaGenerics<T>
     public void imprimirDatos()
     {
         if (!esVacia()) {
-            NodoGeneric<T> aux = this.primero;
+            Node<T> aux = this.primero;
             int recorre = 0;
             while(recorre<largo()){
                 System.out.println(aux.getDato());
@@ -142,5 +145,32 @@ public class ListaEnlazadaGenerics<T> implements ListaGenerics<T>
             }
 
         }
+    }
+    @Override
+    public void push(T dato) {
+        agregar(dato);
+    }
+
+    @Override
+    public T pop() throws EmptyStackException {
+        if(esVacia())
+            throw new EmptyStackException();
+        else
+            return quitar(0);
+    }
+
+    @Override
+    public T top() {
+        return getPrimero().getDato();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return esVacia();
+    }
+
+    @Override
+    public void clear() {
+        vaciar();
     }
 }

@@ -1,8 +1,8 @@
-package obligatorio2023.tad.listagenericos;
+package obligatorio2023.TADs.MyLinkedList;
 
-import obligatorio2023.tad.exceptions.IllegalIndexException;
+import obligatorio2023.TADs.Exception.IllegalIndexException;
 
-public interface ListaGenerics<T>
+public interface MyLinkedList<T>
 {
     /*
     * Retorna verdadero si la lista no contiene elementos.

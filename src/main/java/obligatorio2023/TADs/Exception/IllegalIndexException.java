@@ -1,4 +1,4 @@
-package obligatorio2023.tad.exceptions;
+package obligatorio2023.TADs.Exception;
 
 public class IllegalIndexException extends Exception
 {

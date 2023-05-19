@@ -1,13 +1,13 @@
-package obligatorio2023.tad.listagenericos;
+package obligatorio2023.TADs.MyLinkedList;
 
 
-import obligatorio2023.tad.exceptions.IllegalIndexException;
+import obligatorio2023.TADs.Exception.IllegalIndexException;
 
-public class ListaDoblementeEnlazadaGenerics<T> extends ListaEnlazadaGenerics<T> implements ListaGenerics<T> {
+public class ListaDoblementeEnlazadaGenerics<T> extends MyLinkedListImp<T> implements MyLinkedList<T> {
 
-    private NodoGeneric<T> primero;
+    private Node<T> primero;
     @Override
-    public NodoGeneric<T> getPrimero() {
+    public Node<T> getPrimero() {
         return super.getPrimero();
     }
 
@@ -23,12 +23,12 @@ public class ListaDoblementeEnlazadaGenerics<T> extends ListaEnlazadaGenerics<T>
 
     @Override
     public void agregarAlFinal(T obj) {
-        NodoGeneric<T> nuevo= new NodoGeneric<>(obj);
+        Node<T> nuevo= new Node<>(obj);
         if (this.primero==null){
             this.primero=nuevo;
         }
         else{
-            NodoGeneric<T> aux=this.primero;
+            Node<T> aux=this.primero;
             while(aux.getSiguiente()!=null){
                 aux=aux.getSiguiente();
             }
@@ -43,7 +43,7 @@ public class ListaDoblementeEnlazadaGenerics<T> extends ListaEnlazadaGenerics<T>
             throw  new IllegalIndexException("El indice es incorrecto");
         }
         else{
-            NodoGeneric<T> nuevo = new NodoGeneric<>(obj);
+            Node<T> nuevo = new Node<>(obj);
             if (index == 0) {
                 agregar(obj);
             } else {
@@ -51,7 +51,7 @@ public class ListaDoblementeEnlazadaGenerics<T> extends ListaEnlazadaGenerics<T>
                     agregarAlFinal(obj);
                 } else {
                     int recorre = 0;
-                    NodoGeneric<T> aux = this.primero;
+                    Node<T> aux = this.primero;
                     while (recorre < index - 1) {
                         recorre++;
                         aux = aux.getSiguiente();
