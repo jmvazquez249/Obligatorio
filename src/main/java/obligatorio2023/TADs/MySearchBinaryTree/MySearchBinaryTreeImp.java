@@ -1,6 +1,6 @@
-package obligatorio2023.tad.binaryTree;
+package obligatorio2023.TADs.MySearchBinaryTree;
 
-public class BinaryTree <K,T> implements MyTree<K,T> {
+public class MySearchBinaryTreeImp<K,T> implements MySearchBinaryTree<K,T> {
     NodeTree<K,T> raiz;
     @Override
     public T find(K key) {

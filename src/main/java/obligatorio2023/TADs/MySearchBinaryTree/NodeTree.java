@@ -1,4 +1,4 @@
-package obligatorio2023.tad.binaryTree;
+package obligatorio2023.TADs.MySearchBinaryTree;
 
 public class NodeTree<K, T> {
     K key;

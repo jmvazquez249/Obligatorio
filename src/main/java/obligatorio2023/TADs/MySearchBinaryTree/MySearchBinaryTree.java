@@ -1,6 +1,6 @@
-package obligatorio2023.tad.binaryTree;
+package obligatorio2023.TADs.MySearchBinaryTree;
 
-public interface MyTree <K,T>{
+public interface MySearchBinaryTree<K,T>{
     T find(K key);
     void insert (K key, T data, K parentKey);
     void delete (K key);
