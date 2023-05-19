@@ -145,7 +145,9 @@ public class MyLinkedListImp<T> implements MyList<T>, MyStack<T>, MyQueue<T>
 
     @Override
     public void vaciar()
-    {this.primero=null;
+    {
+        this.primero=null;
+        this.ultimo=null;
     }
 
     @Override
@@ -178,11 +180,6 @@ public class MyLinkedListImp<T> implements MyList<T>, MyStack<T>, MyQueue<T>
     @Override
     public T top() {
         return getPrimero().getDato();
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return esVacia();
     }
 
     @Override

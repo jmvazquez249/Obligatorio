@@ -1,6 +1,6 @@
 package obligatorio2023.TADs.MySearchBinaryTree;
 
-public class NodeTree<K, T> {
+public class NodeTree<K extends Comparable<K>, T> {
     K key;
     T data;
     NodeTree<K, T> leftChild;
@@ -43,16 +43,15 @@ public class NodeTree<K, T> {
         this.rightChild = rightChild;
     }
 
-    T find(K KeyToFind){
-        if (this.getKey()==KeyToFind){
-            return this.getData();
+    public T find(K Key) {
+        if (this.key.compareTo(Key)==0) {
+            return this.data;
         }
-
-        if ( rightChild!=null &&rightChild.find(KeyToFind)!=null){
-            return rightChild.find(KeyToFind);
+        if(this.key.compareTo(Key)>0 && rightChild!=null){
+            return rightChild.find(Key);
         }
-        if (leftChild!=null && leftChild.find(KeyToFind)!=null){
-            return leftChild.find(KeyToFind);
+        if(this.key.compareTo(Key)<0 && leftChild!=null){
+            return leftChild.find(Key);
         }
         return null;
     }
@@ -84,11 +83,51 @@ public class NodeTree<K, T> {
         return leafsizq + leafsder;
     }
 
-    int countCompleteElements() {
-        if(leftChild==null || rightChild==null){
-            return 0;
+    public NodeTree<K,T> findNode(K Key){
+        if (this.key.compareTo(Key)==0) {
+            return this;
         }
-        return leftChild.countCompleteElements()+ rightChild.countCompleteElements()+1;
-
+        if(this.key.compareTo(Key)>0 && rightChild!=null){
+            return (NodeTree<K,T>) rightChild.find(Key);
+        }
+        if(this.key.compareTo(Key)<0 && leftChild!=null){
+            return (NodeTree<K,T>) leftChild.find(Key);
+        }
+        return null;
     }
+    public void insert(K Key, T data) {
+        if(this.key.compareTo(Key)>0){
+            if (this.rightChild!=null) {
+                rightChild.insert(Key, data);
+            }else{
+                this.rightChild= new NodeTree<>(Key,data);
+            }
+        }
+        if(this.key.compareTo(Key)<0){
+            if (this.leftChild!=null) {
+                leftChild.insert(Key, data);
+            }else{
+                this.leftChild= new NodeTree<>(Key,data);
+            }
+        }
+    }
+    public void delete(K key){
+        NodeTree<K,T> nodeToDelete = findNode(key);
+        if (nodeToDelete.leftChild==null && nodeToDelete.rightChild==null){
+            nodeToDelete=null;
+        }else {
+            NodeTree<K, T> min = rightChild.findMin();
+            this.key = min.getKey();
+            this.data = min.getData();
+            rightChild.delete(min.getKey());
+        }
+    }
+    public NodeTree<K,T> findMin() {
+        NodeTree<K,T> m = this;
+        if (leftChild != null) {
+            m = leftChild.findMin();
+        }
+        return m;
+    }
+
 }

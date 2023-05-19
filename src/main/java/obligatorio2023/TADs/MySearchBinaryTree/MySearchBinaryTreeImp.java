@@ -1,6 +1,6 @@
 package obligatorio2023.TADs.MySearchBinaryTree;
 
-public class MySearchBinaryTreeImp<K,T> implements MySearchBinaryTree<K,T> {
+public class MySearchBinaryTreeImp<K extends Comparable<K>,T> implements MySearchBinaryTree<K,T> {
     NodeTree<K,T> raiz;
     @Override
     public T find(K key) {
@@ -10,13 +10,19 @@ public class MySearchBinaryTreeImp<K,T> implements MySearchBinaryTree<K,T> {
     }
 
     @Override
-    public void insert(K key, T data, K parentKey) {
-
+    public void insert(K key, T data) {
+        if (raiz==null){
+            this.raiz = new NodeTree(key,data);
+        }else{
+            raiz.insert(key,data);
+        }
     }
 
     @Override
     public void delete(K key) {
-
+        if (raiz!=null){
+            raiz.delete(key);
+        }
     }
 
     @Override
@@ -38,12 +44,13 @@ public class MySearchBinaryTreeImp<K,T> implements MySearchBinaryTree<K,T> {
         }
     }
 
+
     @Override
-    public int countCompleteElements() {
-        if(raiz==null){
-            return 0;
-        }
-        else
-            return raiz.countCompleteElements();
+    public NodeTree<K, T> findNode(K key) {
+            if (raiz==null){
+                return null;
+            }else{
+                return (NodeTree<K,T>) raiz.find(key);
+            }
     }
 }
