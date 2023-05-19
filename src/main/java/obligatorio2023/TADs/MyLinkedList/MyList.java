@@ -2,7 +2,7 @@ package obligatorio2023.TADs.MyLinkedList;
 
 import obligatorio2023.Exception.IllegalIndexException;
 
-public interface MyLinkedList<T>
+public interface MyList<T>
 {
     /*
     * Retorna verdadero si la lista no contiene elementos.

@@ -3,7 +3,7 @@ package obligatorio2023.TADs.MyLinkedList;
 
 import obligatorio2023.Exception.IllegalIndexException;
 
-public class ListaDoblementeEnlazadaGenerics<T> extends MyLinkedListImp<T> implements MyLinkedList<T> {
+public class ListaDoblementeEnlazadaGenerics<T> extends MyLinkedListImp<T> implements MyList<T> {
 
     private Node<T> primero;
     @Override
