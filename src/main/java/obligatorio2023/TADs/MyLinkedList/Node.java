@@ -14,9 +14,8 @@ public class Node<T>
     }
 
     private Node<T> anterior;
-    public Node()
-    {
 
+    public Node() {
     }
 
     public Node(T dato)

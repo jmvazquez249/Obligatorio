@@ -11,7 +11,7 @@ public class MyLinkedListImp<T> implements MyList<T>, MyStack<T>, MyQueue<T>
 {
 
     private Node<T> primero;
-    private Node <T> ultimo;
+    private Node<T> ultimo;
 
     public MyLinkedListImp() {
         this.primero = null;
@@ -33,15 +33,15 @@ public class MyLinkedListImp<T> implements MyList<T>, MyStack<T>, MyQueue<T>
     }
 
     @Override
-    public void agregar(T obj)
-    { Node<T> nuevo= new Node<>(obj);
+    public void agregar(T obj) {
+        Node<T> nuevo= new Node<>(obj);
         if (this.primero==null){
             this.primero=nuevo;
             this.ultimo=nuevo;
+        }else {
+            nuevo.setSiguiente(this.primero);
+            this.primero = nuevo;
         }
-        nuevo.setSiguiente(this.primero);
-        this.primero=nuevo;
-
     }
 
     @Override
@@ -81,18 +81,14 @@ public class MyLinkedListImp<T> implements MyList<T>, MyStack<T>, MyQueue<T>
     }
 
     @Override
-    public int largo(){ int contador=1;
-        if(esVacia()==true){
-            return 0;
+    public int largo(){
+        Node<T> aux = this.primero;
+        int largo=0;
+        while (aux!=null){
+            aux=aux.getSiguiente();
+            largo++;
         }
-        else{
-            Node<T> aux=this.primero;
-            while(aux.getSiguiente()!=null){
-                contador++;
-                aux=aux.getSiguiente();
-            }
-            return contador;
-        }
+        return largo;
     }
 
     @Override
