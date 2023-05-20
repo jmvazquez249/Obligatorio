@@ -39,6 +39,18 @@ public class funcionesTAD {
        Numeros.enqueue(24); //Ultimo en entrar
        assertSame(9,Numeros.dequeue());
        assertEquals(3, Numeros.largo());
+       assertSame(7,Numeros.dequeue());
+       assertSame(-1,Numeros.dequeue());
+        assertSame(24,Numeros.dequeue());
+        try{
+           Numeros.dequeue();
+           fail();
+       }
+       catch (EmptyQueueException ex){}
+       catch (Exception ex){
+           fail();
+       }
+
     }
     @Test
     public void TestStack(){
