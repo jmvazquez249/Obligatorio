@@ -13,5 +13,6 @@ public interface MyList<T>
     T elemento(int index);
     void vaciar();
     void imprimirDatos();
+    T getUltimo();
 
 }

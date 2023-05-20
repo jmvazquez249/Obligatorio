@@ -28,8 +28,7 @@ public class MyLinkedListImp<T> implements MyList<T>, MyStack<T>, MyQueue<T>
         if (this.primero==null){
             return true;
         }
-        else{
-            return false;}
+        return false;
     }
 
     @Override
@@ -45,10 +44,15 @@ public class MyLinkedListImp<T> implements MyList<T>, MyStack<T>, MyQueue<T>
     }
 
     @Override
-    public void agregarAlFinal(T obj)
-    {       Node<T> nuevo= new Node<T>(obj);
-            this.ultimo.setSiguiente(nuevo);
-            this.ultimo=nuevo;
+    public void agregarAlFinal(T obj) {
+            Node<T> nuevo= new Node<>(obj);
+            if (this.esVacia()){
+                this.primero=nuevo;
+                this.ultimo=nuevo;
+            }else {
+                this.ultimo.setSiguiente(nuevo);
+                this.ultimo = nuevo;
+            }
         }
 
 
@@ -160,6 +164,12 @@ public class MyLinkedListImp<T> implements MyList<T>, MyStack<T>, MyQueue<T>
 
         }
     }
+
+    @Override
+    public T getUltimo() {
+        return this.ultimo.getDato();
+    }
+
     @Override
     public void push(T dato) {
         agregar(dato);
