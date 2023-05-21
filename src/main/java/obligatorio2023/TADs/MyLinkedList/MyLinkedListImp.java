@@ -189,11 +189,6 @@ public class MyLinkedListImp<T> implements MyList<T>, MyStack<T>, MyQueue<T>
     }
 
     @Override
-    public void clear() {
-        vaciar();
-    }
-
-    @Override
     public void enqueue(T value) {
         agregar(value);
 

@@ -15,32 +15,8 @@ public class NodeTree<K extends Comparable<K>, T> {
         return key;
     }
 
-    public void setKey(K key) {
-        this.key = key;
-    }
-
     public T getData() {
         return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
-
-    public NodeTree<K, T> getLeftChild() {
-        return leftChild;
-    }
-
-    public void setLeftChild(NodeTree<K, T> leftChild) {
-        this.leftChild = leftChild;
-    }
-
-    public NodeTree<K, T> getRightChild() {
-        return rightChild;
-    }
-
-    public void setRightChild(NodeTree<K, T> rightChild) {
-        this.rightChild = rightChild;
     }
 
     public T find(K Key) {
@@ -83,18 +59,6 @@ public class NodeTree<K extends Comparable<K>, T> {
         return leafsizq + leafsder;
     }
 
-    public NodeTree<K,T> findNode(K Key){
-        if (this.key.compareTo(Key)==0) {
-            return this;
-        }
-        if(this.key.compareTo(Key)>0 && rightChild!=null){
-            return (NodeTree<K,T>) rightChild.find(Key);
-        }
-        if(this.key.compareTo(Key)<0 && leftChild!=null){
-            return (NodeTree<K,T>) leftChild.find(Key);
-        }
-        return null;
-    }
     public void insert(K Key, T data) {
         if(this.key.compareTo(Key)>0){
             if (this.rightChild!=null) {
@@ -111,16 +75,30 @@ public class NodeTree<K extends Comparable<K>, T> {
             }
         }
     }
-    public void delete(K key){
-        NodeTree<K,T> nodeToDelete = findNode(key);
-        if (nodeToDelete.leftChild==null && nodeToDelete.rightChild==null){
-            nodeToDelete=null;
-        }else {
+    public NodeTree<K,T> delete(K key){
+        NodeTree<K,T> nodeToDelete = this;
+        if(this.key.compareTo(key)>0){
+            if (rightChild!=null){
+                rightChild=rightChild.delete(key);
+            }
+        }else if (key.compareTo(this.key)<0){
+            if(leftChild!=null){
+                leftChild=leftChild.delete(key);
+            }
+        }else if (leftChild!=null && rightChild!=null){
             NodeTree<K, T> min = rightChild.findMin();
             this.key = min.getKey();
             this.data = min.getData();
-            rightChild.delete(min.getKey());
+            rightChild = rightChild.delete(min.getKey());
+        }else{
+            if (leftChild != null) {
+                nodeToDelete = leftChild;
+            } else {
+                nodeToDelete = rightChild;
+            }
+
         }
+        return nodeToDelete;
     }
     public NodeTree<K,T> findMin() {
         NodeTree<K,T> m = this;

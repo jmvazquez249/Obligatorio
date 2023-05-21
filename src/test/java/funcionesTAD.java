@@ -1,8 +1,12 @@
 import obligatorio2023.Exception.EmptyQueueException;
+import obligatorio2023.Exception.EmptyStackException;
 import obligatorio2023.Exception.IllegalIndexException;
 import obligatorio2023.TADs.MyLinkedList.MyLinkedListImp;
 import obligatorio2023.TADs.MyLinkedList.MyList;
 import obligatorio2023.TADs.MyQueue.MyQueue;
+import obligatorio2023.TADs.MySearchBinaryTree.MySearchBinaryTree;
+import obligatorio2023.TADs.MySearchBinaryTree.MySearchBinaryTreeImp;
+import obligatorio2023.TADs.MyStack.MyStack;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -39,21 +43,55 @@ public class funcionesTAD {
        Numeros.enqueue(24); //Ultimo en entrar
        assertSame(9,Numeros.dequeue());
        assertEquals(3, Numeros.largo());
-       assertSame(7,Numeros.dequeue());
-       assertSame(-1,Numeros.dequeue());
-        assertSame(24,Numeros.dequeue());
-        try{
+       Numeros.vaciar();
+       try{
            Numeros.dequeue();
            fail();
        }
-       catch (EmptyQueueException ex){}
-       catch (Exception ex){
+       catch (EmptyQueueException EQE){
+       } catch (Exception Ex){
            fail();
        }
 
     }
     @Test
-    public void TestStack(){
+    public void TestStack() throws EmptyStackException {
+        MyStack<Integer> Numeros = new MyLinkedListImp<>();
+        Numeros.push(4); //Primero en entrar
+        Numeros.push(7);
+        Numeros.push(0);
+        Numeros.push(-5); //Ultimo en entrar
+        assertSame(-5,Numeros.top());
+        assertSame(-5,Numeros.pop());
+        Numeros.vaciar();
+        try {
+            Numeros.pop();
+            fail();
+        }catch(EmptyStackException ESE){
+        }catch (Exception Ex){
+            fail();
+        }
+    }
+    @Test
+    public void TestBinarySearchTree(){
+        MySearchBinaryTree Arbol = new MySearchBinaryTreeImp();
+        Arbol.insert(134,"A");
+        Arbol.insert(120,"B");
+        Arbol.insert(150,"C");
+        Arbol.insert(127,"D");
+        Arbol.insert(7,"E");
+        Arbol.insert(99,"F");
+        Arbol.insert(31,"G");
+        Arbol.insert(60,"H");
+        assertSame(3,Arbol.countLeaf());
+        assertSame(8,Arbol.size());
+        assertEquals("E",Arbol.find(7));
+        assertEquals("C",Arbol.find(150));
+        Arbol.delete(7);
+        assertEquals(null,Arbol.find(7));
+
+
+
 
     }
 }
