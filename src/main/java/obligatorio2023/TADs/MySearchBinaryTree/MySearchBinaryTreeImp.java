@@ -4,7 +4,7 @@ public class MySearchBinaryTreeImp<K extends Comparable<K>,T> implements MySearc
     public MySearchBinaryTreeImp() {
     }
 
-    NodeTree<K,T> raiz;
+    TreeNode<K,T> raiz;
     @Override
     public T find(K key) {
         if(raiz==null){
@@ -15,7 +15,7 @@ public class MySearchBinaryTreeImp<K extends Comparable<K>,T> implements MySearc
     @Override
     public void insert(K key, T data) {
         if (raiz==null){
-            this.raiz = new NodeTree(key,data);
+            this.raiz = new TreeNode(key,data);
         }else{
             raiz.insert(key,data);
         }

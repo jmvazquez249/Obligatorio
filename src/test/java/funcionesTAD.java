@@ -1,6 +1,8 @@
 import obligatorio2023.Exception.EmptyQueueException;
 import obligatorio2023.Exception.EmptyStackException;
 import obligatorio2023.Exception.IllegalIndexException;
+import obligatorio2023.TADs.MyHeapArray.MyBinaryHeap;
+import obligatorio2023.TADs.MyHeapArray.MyBinaryHeapImpl;
 import obligatorio2023.TADs.MyLinkedList.MyLinkedListImp;
 import obligatorio2023.TADs.MyLinkedList.MyList;
 import obligatorio2023.TADs.MyQueue.MyQueue;
@@ -74,7 +76,7 @@ public class funcionesTAD {
     }
     @Test
     public void TestBinarySearchTree(){
-        MySearchBinaryTree Arbol = new MySearchBinaryTreeImp();
+        MySearchBinaryTree<Integer, String> Arbol = new MySearchBinaryTreeImp();
         Arbol.insert(134,"A");
         Arbol.insert(120,"B");
         Arbol.insert(150,"C");
@@ -89,9 +91,14 @@ public class funcionesTAD {
         assertEquals("C",Arbol.find(150));
         Arbol.delete(7);
         assertEquals(null,Arbol.find(7));
-
-
-
-
+    }
+    @Test
+    public void testHeap(){
+        MyBinaryHeap<Integer> Heap = new MyBinaryHeapImpl(true);
+        Heap.insert(1);
+        Heap.insert(4);
+        Heap.insert(5);
+        Heap.insert(6);
+        assertSame(6,Heap.getMax());
     }
 }

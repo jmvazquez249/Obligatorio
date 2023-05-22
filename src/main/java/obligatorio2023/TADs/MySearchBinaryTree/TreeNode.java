@@ -1,12 +1,12 @@
 package obligatorio2023.TADs.MySearchBinaryTree;
 
-public class NodeTree<K extends Comparable<K>, T> {
-    K key;
-    T data;
-    NodeTree<K, T> leftChild;
-    NodeTree<K, T> rightChild;
+public class TreeNode<K extends Comparable<K>, T> {
+    private K key;
+    private T data;
+    TreeNode<K, T> leftChild;
+    TreeNode<K, T> rightChild;
 
-    public NodeTree(K key, T data) {
+    public TreeNode(K key, T data) {
         this.key = key;
         this.data = data;
     }
@@ -64,19 +64,19 @@ public class NodeTree<K extends Comparable<K>, T> {
             if (this.rightChild!=null) {
                 rightChild.insert(Key, data);
             }else{
-                this.rightChild= new NodeTree<>(Key,data);
+                this.rightChild= new TreeNode<>(Key,data);
             }
         }
         if(this.key.compareTo(Key)<0){
             if (this.leftChild!=null) {
                 leftChild.insert(Key, data);
             }else{
-                this.leftChild= new NodeTree<>(Key,data);
+                this.leftChild= new TreeNode<>(Key,data);
             }
         }
     }
-    public NodeTree<K,T> delete(K key){
-        NodeTree<K,T> nodeToDelete = this;
+    public TreeNode<K,T> delete(K key){
+        TreeNode<K,T> nodeToDelete = this;
         if(this.key.compareTo(key)>0){
             if (rightChild!=null){
                 rightChild=rightChild.delete(key);
@@ -86,7 +86,7 @@ public class NodeTree<K extends Comparable<K>, T> {
                 leftChild=leftChild.delete(key);
             }
         }else if (leftChild!=null && rightChild!=null){
-            NodeTree<K, T> min = rightChild.findMin();
+            TreeNode<K, T> min = rightChild.findMin();
             this.key = min.getKey();
             this.data = min.getData();
             rightChild = rightChild.delete(min.getKey());
@@ -100,8 +100,8 @@ public class NodeTree<K extends Comparable<K>, T> {
         }
         return nodeToDelete;
     }
-    public NodeTree<K,T> findMin() {
-        NodeTree<K,T> m = this;
+    public TreeNode<K,T> findMin() {
+        TreeNode<K,T> m = this;
         if (leftChild != null) {
             m = leftChild.findMin();
         }

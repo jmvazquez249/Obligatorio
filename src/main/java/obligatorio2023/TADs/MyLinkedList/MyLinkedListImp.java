@@ -7,8 +7,7 @@ import obligatorio2023.Exception.IllegalIndexException;
 import obligatorio2023.TADs.MyQueue.MyQueue;
 import obligatorio2023.TADs.MyStack.MyStack;
 
-public class MyLinkedListImp<T> implements MyList<T>, MyStack<T>, MyQueue<T>
-{
+public class MyLinkedListImp<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
 
     private Node<T> primero;
     private Node<T> ultimo;
