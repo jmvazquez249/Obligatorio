@@ -166,7 +166,7 @@ public class MyBinaryHeapImpl<T extends Comparable<T>> implements MyBinaryHeap<T
 
     @Override
     public T getMax() {
-        if(this.isMax==true) {
+        if(this.isMax) {
             return this.heap[0];
         }
         return null;
@@ -174,7 +174,7 @@ public class MyBinaryHeapImpl<T extends Comparable<T>> implements MyBinaryHeap<T
     }
     @Override
     public T getMin(){
-        if(this.isMax==false) {
+        if(!this.isMax) {
             return this.heap[0];
         }
         return null;
