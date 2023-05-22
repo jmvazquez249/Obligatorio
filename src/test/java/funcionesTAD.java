@@ -94,11 +94,25 @@ public class funcionesTAD {
     }
     @Test
     public void testHeap(){
-        MyBinaryHeap<Integer> Heap = new MyBinaryHeapImpl(true);
-        Heap.insert(1);
-        Heap.insert(4);
-        Heap.insert(5);
-        Heap.insert(6);
-        assertSame(6,Heap.getMax());
+        MyBinaryHeap<Integer> HeapMax = new MyBinaryHeapImpl(true);
+        HeapMax.insert(1);
+        HeapMax.insert(4);
+        HeapMax.insert(5);
+        HeapMax.insert(6);
+        assertSame(6,HeapMax.getMax());
+        MyBinaryHeap<Integer> HeapMin = new MyBinaryHeapImpl(false);
+        HeapMin.insert(9);
+        HeapMin.insert(4);
+        HeapMin.insert(5);
+        HeapMin.insert(1);
+        assertSame(1,HeapMin.getMin());
+
+        assertSame(4,HeapMax.delete(4));
+        assertSame(-1,HeapMax.find(4));
+
+        assertSame(4,HeapMin.delete(4));
+        assertSame(-1,HeapMin.find(4));
+
+
     }
 }

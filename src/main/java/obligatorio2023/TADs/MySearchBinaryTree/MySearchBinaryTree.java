@@ -7,4 +7,5 @@ public interface MySearchBinaryTree<K extends Comparable<K>,T>{
     int size();
     int countLeaf();
 
+
 }
