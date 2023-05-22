@@ -97,8 +97,8 @@ public class funcionesTAD {
         MyBinaryHeap<Integer> HeapMax = new MyBinaryHeapImpl(true);
         HeapMax.insert(1);
         HeapMax.insert(4);
-        HeapMax.insert(5);
         HeapMax.insert(6);
+        HeapMax.insert(5);
         assertSame(6,HeapMax.getMax());
         MyBinaryHeap<Integer> HeapMin = new MyBinaryHeapImpl(false);
         HeapMin.insert(9);
