@@ -15,17 +15,19 @@ public class MyBinaryHeapImpl<T extends Comparable<T>> implements MyBinaryHeap<T
     public void insert(T value) {
         if (availableAddPos==0){
             this.heap[0]=value;
-        }else if(this.heap[size-1]!=null){
+        }else if(this.availableAddPos==this.size){
             this.addSize();
         }
         if(this.isMax==true){
             this.heap[this.availableAddPos]=value;
+            System.out.println(this.availableAddPos);
             int fPos = fatherPos(this.availableAddPos);
             T fValue=this.heap[fPos];
             if(value.compareTo(fValue)>0){
                 elevateValueMax(value,this.availableAddPos, fValue, fPos);
             }
         }
+        this.availableAddPos++;
 
 
     }
@@ -42,8 +44,12 @@ public class MyBinaryHeapImpl<T extends Comparable<T>> implements MyBinaryHeap<T
 
     public void addSize(){
         T[] old = this.heap;
-        this.heap = (T[]) new Comparable[this.size * 2];
-        System.arraycopy(old, 1, this.heap, 1, size);
+        T[] nuevo = (T[]) new Comparable[this.size * 2];
+        for (int i=0;i<this.size;i++){
+            nuevo[i]=old[i];
+        }
+        this.heap=nuevo;
+        this.size=this.size*2;
     }
 
     public int fatherPos(int pos){
