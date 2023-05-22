@@ -85,7 +85,7 @@ public class MyBinaryHeapImpl<T extends Comparable<T>> implements MyBinaryHeap<T
     public T delete(T value) {
         if(availableAddPos==1){
             this.heap[0]=null;
-        }else if(this.isMax){
+        }else{
             int pDelete = find(value);
             T lastValue = this.heap[availableAddPos - 1];
             this.heap[pDelete] = lastValue;
@@ -98,10 +98,10 @@ public class MyBinaryHeapImpl<T extends Comparable<T>> implements MyBinaryHeap<T
     public void lowerValue(int pDelete){
         T valueLeftChild;
         T valueRightChild;
-        if(leftChildPos(pDelete)>this.size){
+        if(leftChildPos(pDelete)>=this.size){
             valueLeftChild=null;
             valueRightChild=null;
-        }else if(rightChildPos(pDelete)>this.size) {
+        }else if(rightChildPos(pDelete)>=this.size) {
             valueRightChild = null;
             valueLeftChild = this.heap[leftChildPos(pDelete)];
         }else {
