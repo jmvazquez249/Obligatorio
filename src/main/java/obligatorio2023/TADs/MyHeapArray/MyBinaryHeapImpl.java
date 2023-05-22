@@ -79,14 +79,19 @@ public class MyBinaryHeapImpl<T extends Comparable<T>> implements MyBinaryHeap<T
     }
     @Override
     public T delete(){
-        return delete(this.heap[0]);
+        return deleteIndex(0);
+    }
+
+    @Override
+    public T deleteValue(T value){
+        return deleteIndex(find(value));
     }
     @Override
-    public T delete(T value) {
+    public T deleteIndex(int pDelete) {
+        T value=this.heap[pDelete];
         if(availableAddPos==1){
             this.heap[0]=null;
         }else{
-            int pDelete = find(value);
             T lastValue = this.heap[availableAddPos - 1];
             this.heap[pDelete] = lastValue;
             this.heap[availableAddPos - 1] = null;

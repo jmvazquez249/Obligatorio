@@ -107,10 +107,10 @@ public class funcionesTAD {
         HeapMin.insert(1);
         assertSame(1,HeapMin.getMin());
 
-        assertSame(4,HeapMax.delete(4));
+        assertSame(4,HeapMax.deleteValue(4));
         assertSame(-1,HeapMax.find(4));
 
-        assertSame(4,HeapMin.delete(4));
+        assertSame(4,HeapMin.deleteValue(4));
         assertSame(-1,HeapMin.find(4));
 
 
