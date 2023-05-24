@@ -13,6 +13,8 @@ import obligatorio2023.TADs.conjunto.Conjunt;
 import obligatorio2023.TADs.conjunto.Conjunto;
 import org.junit.Test;
 
+import java.util.Optional;
+
 import static org.junit.Assert.*;
 
 
@@ -39,7 +41,7 @@ public class funcionesTAD {
 
     }
     @Test
-    public void TestQueue() throws EmptyQueueException {
+    public void testQueue() throws EmptyQueueException {
        MyQueue<Integer> Numeros = new MyLinkedListImp<>();
        Numeros.enqueue(9); //Primero en entrar
        Numeros.enqueue(7);
@@ -59,7 +61,7 @@ public class funcionesTAD {
 
     }
     @Test
-    public void TestStack() throws EmptyStackException {
+    public void testStack() throws EmptyStackException {
         MyStack<Integer> Numeros = new MyLinkedListImp<>();
         Numeros.push(4); //Primero en entrar
         Numeros.push(7);
@@ -77,7 +79,7 @@ public class funcionesTAD {
         }
     }
     @Test
-    public void TestBinarySearchTree(){
+    public void testBinarySearchTree(){
         MySearchBinaryTree<Integer, String> Arbol = new MySearchBinaryTreeImp();
         Arbol.insert(134,"A");
         Arbol.insert(120,"B");
@@ -116,9 +118,29 @@ public class funcionesTAD {
         assertSame(-1,HeapMin.find(4));
     }
     @Test
-    public void testConjunto(){
-        Conjunt<MyLinkedListImp> conjunto1=new Conjunto<>();
-
-
+    public void testConjunto() {
+        Conjunto<Integer> conj1 = new Conjunto<>();
+        for (int i = 0; i < 10; i++) {
+            conj1.agregar(i);
+        }
+        Conjunto<Integer> conj2 = new Conjunto<>();
+        for (int i = 0; i < 10; i++) {
+            conj2.agregar(i + 3);
+        }
+        Conjunto<Integer> uni12 = conj1.union(conj2);
+        Conjunto<Integer> dif12 = conj1.diferenciaSimetrica(conj2);
+        Conjunto<Integer> difnorm12=conj1.diferencia(conj2);
+        Conjunto<Integer> difnorm21=conj2.diferencia(conj1);
+        Conjunto<Integer> int12=conj1.interseccion(conj2);
+        assertEquals(13, uni12.largo());
+        assertEquals(6, dif12.largo());
+        assertSame(2,uni12.getPrimero().getDato());
+        assertSame(0,dif12.getPrimero().getDato());
+        assertEquals(3,difnorm12.largo());
+        assertEquals(3,difnorm21.largo());
+        assertEquals(7,int12.largo());
+        for(int k=0;k<int12.largo();k++){
+            assertSame((k + 3),int12.elemento(k));
+        }
     }
-}
+    }
