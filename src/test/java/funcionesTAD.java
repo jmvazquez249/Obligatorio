@@ -9,6 +9,8 @@ import obligatorio2023.TADs.MyQueue.MyQueue;
 import obligatorio2023.TADs.MySearchBinaryTree.MySearchBinaryTree;
 import obligatorio2023.TADs.MySearchBinaryTree.MySearchBinaryTreeImp;
 import obligatorio2023.TADs.MyStack.MyStack;
+import obligatorio2023.TADs.conjunto.Conjunt;
+import obligatorio2023.TADs.conjunto.Conjunto;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -112,6 +114,10 @@ public class funcionesTAD {
 
         assertSame(4,HeapMin.deleteValue(4));
         assertSame(-1,HeapMin.find(4));
+    }
+    @Test
+    public void testConjunto(){
+        Conjunt<MyLinkedListImp> conjunto1=new Conjunto<>();
 
 
     }
