@@ -27,7 +27,9 @@ public class funcionesTAD {
        Numeros.agregar(4);
        Numeros.agregar(8);
        Numeros.agregar(7);
-       assertFalse(Numeros.esVacia());
+       assertNull(Numeros.elemento(-1));
+       assertNull(Numeros.elemento(100));
+        assertFalse(Numeros.esVacia());
        assertSame(5,Numeros.largo());
        Numeros.agregar(5,3);
        assertSame(5, Numeros.elemento(3));
