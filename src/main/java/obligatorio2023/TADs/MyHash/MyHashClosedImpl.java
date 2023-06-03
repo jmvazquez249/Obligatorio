@@ -54,7 +54,6 @@ public class MyHashClosedImpl<K,V> implements MyHashInt<K,V>   {
 
         K[] nuevok = (K[]) new Object[this.largo * 2];
         int nuevo_largo = this.largo * 2;
-        int index;
         for (int i=0;i<this.largo;i++){
             if (keysIndex[i]!=null && hashTable[i]!=null ){
                 int code=keysIndex[i].hashCode();
@@ -110,6 +109,9 @@ public class MyHashClosedImpl<K,V> implements MyHashInt<K,V>   {
 
     @Override
     public V get(K key) {
+        if (contains(key)!=-1){
+            return hashTable[contains(key)];
+        }
         return null;
     }
 }
