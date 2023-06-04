@@ -1,4 +1,4 @@
-package obligatorio2023.TADs.conjunto;
+package obligatorio2023.TADs.Conjunto;
 
 
 import obligatorio2023.Exception.IllegalIndexException;

@@ -9,11 +9,8 @@ import obligatorio2023.TADs.MyQueue.MyQueue;
 import obligatorio2023.TADs.MySearchBinaryTree.MySearchBinaryTree;
 import obligatorio2023.TADs.MySearchBinaryTree.MySearchBinaryTreeImp;
 import obligatorio2023.TADs.MyStack.MyStack;
-import obligatorio2023.TADs.conjunto.Conjunt;
-import obligatorio2023.TADs.conjunto.Conjunto;
+import obligatorio2023.TADs.Conjunto.Conjunto;
 import org.junit.Test;
-
-import java.util.Optional;
 
 import static org.junit.Assert.*;
 

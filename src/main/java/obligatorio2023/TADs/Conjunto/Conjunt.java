@@ -1,4 +1,4 @@
-package obligatorio2023.TADs.conjunto;
+package obligatorio2023.TADs.Conjunto;
 
 public interface Conjunt <T>{
     /*
