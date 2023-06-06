@@ -1,6 +1,6 @@
-import obligatorio2023.Exception.EmptyQueueException;
-import obligatorio2023.Exception.EmptyStackException;
-import obligatorio2023.Exception.IllegalIndexException;
+import obligatorio2023.Exception.*;
+import obligatorio2023.TADs.MyHash.MyHashClosedImpl;
+import obligatorio2023.TADs.MyHash.MyHashInt;
 import obligatorio2023.TADs.MyHeapArray.MyBinaryHeap;
 import obligatorio2023.TADs.MyHeapArray.MyBinaryHeapImpl;
 import obligatorio2023.TADs.MyLinkedList.MyLinkedListImp;
@@ -143,4 +143,35 @@ public class funcionesTAD {
             assertSame((k + 3),int12.elemento(k));
         }
     }
+    @Test
+    public void testHash() throws IllegalEntryException, ValueAlreadyExistsException {
+        MyHashInt<String,String> Hash = new MyHashClosedImpl<String,String>(7);
+        Hash.put("Francia","Paris");
+        Hash.put("España","Madrid");
+        Hash.put("Uruguay","Montevideo");
+        Hash.put("Argentina","Buenos Aires");
+        Hash.put("Brasil","Brasilia");
+        Hash.put("Alemania","Berlin");
+        Hash.put("Suiza","Berna");
+
+
+        assertSame("Montevideo",Hash.get("Uruguay"));
+        assertSame("Berna", Hash.get("Suiza"));
+
+        assertSame(-1,Hash.contains("Polonia"));
+//
+        Hash.remove("Francia");
+        assertSame(-1,Hash.contains("Francia"));
+        Hash.remove("Argentina");
+        assertSame(-1,Hash.contains("Argentina"));
+
+        Hash.put("Estados Unidos","Washington D.C");
+        Hash.put("Chile","Santiago");
+        Hash.put("Portugal","Lisboa");
+
+        assertSame("Lisboa", Hash.get("Portugal"));
+
+
+    }
+
     }

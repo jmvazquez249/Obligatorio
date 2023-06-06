@@ -1,6 +1,7 @@
 package obligatorio2023.TADs.MyHash;
 
 import obligatorio2023.Exception.IllegalEntryException;
+import obligatorio2023.Exception.ValueAlreadyExistsException;
 
 import javax.crypto.Mac;
 
@@ -20,27 +21,31 @@ public class MyHashClosedImpl<K,V> implements MyHashInt<K,V>   {
     }
 
     @Override
-    public void put(K key, V value) throws IllegalEntryException {
+    public void put(K key, V value) throws IllegalEntryException, ValueAlreadyExistsException {
         if (key!=null && value!=null ){
-            int code=key.hashCode();
-            int mod=code%largo;
-            boolean seagrego=false;
-            while (!seagrego){
-                if(hashTable[mod]==null){
-                    hashTable[mod]=value;
-                    keysIndex[mod]=key;
-                    seagrego=true;
-                    contador++;
-                }else{
-                    if (mod<largo-1){
-                    mod++;}
-                    else{
-                        mod=0;
+            if(contains(key) == -1){
+                int code=Math.abs(key.hashCode());
+                int mod= code%largo;
+                boolean seagrego=false;
+                while (!seagrego){
+                    if(hashTable[mod]==null){
+                        hashTable[mod]=value;
+                        keysIndex[mod]=key;
+                        seagrego=true;
+                        contador++;
+                    }else{
+                        if (mod<largo-1){
+                        mod++;}
+                        else{
+                            mod=0;
+                        }
                     }
                 }
-            }
-            if(largo*0.8<contador){
-                resize();
+                if(largo*0.8<contador){
+                    resize();
+                }
+        }else{
+            throw new ValueAlreadyExistsException("Valor ya fue ingresado");
             }
         }
         else{
@@ -55,12 +60,12 @@ public class MyHashClosedImpl<K,V> implements MyHashInt<K,V>   {
         K[] nuevok = (K[]) new Object[this.largo * 2];
         int nuevo_largo = this.largo * 2;
         for (int i=0;i<this.largo;i++){
-            if (keysIndex[i]!=null && hashTable[i]!=null ){
-                int code=keysIndex[i].hashCode();
+            if (keysIndex[i]!=null){
+                int code=Math.abs(keysIndex[i].hashCode());
                 int mod=code%nuevo_largo;
                 boolean seagrego=false;
                 while (!seagrego){
-                    if(nuevo[mod]==null){
+                    if(nuevok[mod]==null){
                         nuevo[mod]=hashTable[i];
                         nuevok[mod]=keysIndex[i];
                         seagrego=true;
@@ -80,15 +85,15 @@ public class MyHashClosedImpl<K,V> implements MyHashInt<K,V>   {
     }
     @Override
     public int contains(K key) {
-        int code=key.hashCode();
+        int code=Math.abs(key.hashCode());
         int mod=code%largo;
         while(true){
-            if(hashTable[mod]==null){
+            if(keysIndex[mod]==null&&hashTable[mod]==null){
                 return -1;
             }else{
-                if(keysIndex[mod].hashCode()== code){
+                if(Math.abs(keysIndex[mod].hashCode()) == code&& hashTable[mod]!=null){
                     return mod;
-                }else {
+                }else{
                     if (mod<largo-1){
                         mod++;}
                     else{
@@ -101,7 +106,7 @@ public class MyHashClosedImpl<K,V> implements MyHashInt<K,V>   {
 
     @Override
     public void remove(K key) {
-        int indice=contains(key);
+        int indice = contains(key);
         if(indice!=-1){
             hashTable[indice]=null;
         }
