@@ -162,14 +162,15 @@ public class funcionesTAD {
 //
         Hash.remove("Francia");
         assertSame(-1,Hash.contains("Francia"));
+        assertSame(1,Hash.contains("Argentina"));
         Hash.remove("Argentina");
         assertSame(-1,Hash.contains("Argentina"));
-
         Hash.put("Estados Unidos","Washington D.C");
         Hash.put("Chile","Santiago");
         Hash.put("Portugal","Lisboa");
-
         assertSame("Lisboa", Hash.get("Portugal"));
+        Hash.put("Argentina","Buenos Aires");
+        assertSame("Buenos Aires",Hash.get("Argentina"));
 
 
     }
