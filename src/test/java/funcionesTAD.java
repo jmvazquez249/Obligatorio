@@ -9,7 +9,7 @@ import obligatorio2023.TADs.MyQueue.MyQueue;
 import obligatorio2023.TADs.MySearchBinaryTree.MySearchBinaryTree;
 import obligatorio2023.TADs.MySearchBinaryTree.MySearchBinaryTreeImp;
 import obligatorio2023.TADs.MyStack.MyStack;
-import obligatorio2023.TADs.Conjunto.Conjunto;
+import obligatorio2023.TADs.Conjunto.ConjuntoImpl;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -119,19 +119,19 @@ public class funcionesTAD {
     }
     @Test
     public void testConjunto() {
-        Conjunto<Integer> conj1 = new Conjunto<>();
+        ConjuntoImpl<Integer> conj1 = new ConjuntoImpl<>();
         for (int i = 0; i < 10; i++) {
             conj1.agregar(i);
         }
-        Conjunto<Integer> conj2 = new Conjunto<>();
+        ConjuntoImpl<Integer> conj2 = new ConjuntoImpl<>();
         for (int i = 0; i < 10; i++) {
             conj2.agregar(i + 3);
         }
-        Conjunto<Integer> uni12 = conj1.union(conj2);
-        Conjunto<Integer> dif12 = conj1.diferenciaSimetrica(conj2);
-        Conjunto<Integer> difnorm12=conj1.diferencia(conj2);
-        Conjunto<Integer> difnorm21=conj2.diferencia(conj1);
-        Conjunto<Integer> int12=conj1.interseccion(conj2);
+        ConjuntoImpl<Integer> uni12 = conj1.union(conj2);
+        ConjuntoImpl<Integer> dif12 = conj1.diferenciaSimetrica(conj2);
+        ConjuntoImpl<Integer> difnorm12=conj1.diferencia(conj2);
+        ConjuntoImpl<Integer> difnorm21=conj2.diferencia(conj1);
+        ConjuntoImpl<Integer> int12=conj1.interseccion(conj2);
         assertEquals(13, uni12.largo());
         assertEquals(6, dif12.largo());
         assertSame(2,uni12.getPrimero().getDato());
